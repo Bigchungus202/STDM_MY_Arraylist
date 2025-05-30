@@ -8,6 +8,7 @@ package LinkedList;/*
 public class MyLinkedListOG {
 
     int count = 0;
+    Container head = null;
     
     class Container {
         String content;
@@ -34,20 +35,38 @@ public class MyLinkedListOG {
 
     public boolean contains(String s) {
         // liefert true wenn s enthalten ist
-
-
+        Container current = head;
+        while (current != null) {
+            if (current.content.equals(s)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
     }
 
     public boolean add(String s) {
-        // hängt den String s ans Ende
-        // liefert true, wenn es geklappt hat (also immer!)
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Container neu = new Container(); // neues Element
+        neu.content = s;
+
+        if (head == null) {
+            head = neu; // erstes Element in der Liste
+        } else {
+            Container current = head;
+            while (current.next != null) {
+                current = current.next; // gehe ans Ende
+            }
+            current.next = neu; // neues Element anhängen
+        }
+
+        count++; // Element hinzugefügt, also erhöhen
+        return true;
     }
 
     public boolean remove(String s) {
         // löscht das erste Vorkommen von s, die folgenden Elemente rücken vor
         // liefert false, wenn s nicht enthalten ist
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     public void clear() {

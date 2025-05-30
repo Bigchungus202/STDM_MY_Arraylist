@@ -46,23 +46,21 @@ public class MyArrayListOG {
     // hängt den String s ans Ende
     // liefert true, wenn es geklappt hat (also immer!)
 
-    if(count == myArray.length){
-      String[] newArray = new String[5 + myArray.length];
+    if (count == myArray.length) {
+      String[] newArray = new String[myArray.length + 5];
 
-      for(int i=0; i<myArray.length; i++ ){
+      for (int i = 0; i < myArray.length; i++) {
         newArray[i] = myArray[i];
       }
 
       myArray = newArray;
-      myArray[count] = s;
-      count ++;
-
-    }else{
-      myArray[count] = s;
-      count ++;
     }
+
+    myArray[count] = s;
+    count++;
     return true;
   }
+
 
   public boolean remove(String s) {
     // löscht das erste Vorkommen von s, die folgenden Elemente rücken vor
@@ -114,41 +112,76 @@ public class MyArrayListOG {
 
   public String set(int i, String e) {
     // ersetzt das Element an der Stelle i
-    return myArray[i] = e;
+    myArray[i] = e;
+
+    return myArray[i];
 
   }
 
   public void add(int i, String s) {
     // fügt s an der Stelle i ein (nachfolgende Elemente rutschen weiter)
-    String[] newArray = new String[myArray.length + 5];
+
+    //neues Array mit mehr Platz
+    String[] newArray = new String[myArray.length + 1];
 
     //iteriert durch das alte Array
-    for (int j = 0; j< myArray.length +1; j++) {
-
-
+    for (int j = 0; j < i; j++) {
+      newArray[j] = myArray[j];
     }
+    newArray[i] = s;
 
+    for (int j = i; j< myArray.length; j++) {
+      newArray[j+1] = myArray[j];
+    }
+    myArray = newArray;
   }
 
 
   public String remove(int i) {
     // löscht das Element an der Stelle i, die folgenden Elemente rücken vor
     // liefert das gelöschte Element als Ergebnis
-    throw new UnsupportedOperationException(
-        "Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    String[] newArray = new String[myArray.length - 1];
+    String remove = myArray[i];
+
+    for (int j = 0; j < i; j++) {
+      newArray[j] = myArray[j];
+    }
+
+    for (int j = i + 1; j< myArray.length; j++) {
+      newArray[j-1] = myArray[j];
+    }
+    myArray = newArray;
+
+    return remove;
+
+
   }
 
   public int indexOf(String s) {
     // liefert die Platznummer des ersten Vorkommens von s
     // oder -1 wenn s nicht enthalten ist
-    throw new UnsupportedOperationException(
-        "Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    for (int i = 0; i < myArray.length; i++) {
+      if (myArray[i] == s) {
+        return i;
+      }
+    }
+    return -1;
+
   }
 
   public int lastIndexOf(Object o) {
-    // liefert die Platznummer des letzten Vorkommens von s
-    // oder -1 wenn s nicht enthalten ist
-    throw new UnsupportedOperationException(
-        "Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    // liefert die Platznummer des letzten Vorkommens von o
+    // oder -1 wenn o nicht enthalten ist
+    int count = -1;
+
+    for (int i = 0; i < myArray.length; i++) {
+      if (myArray[i] == o || (myArray[i] != null && myArray[i].equals(o))) {
+        count = i;
+      }
+    }
+
+    return count;
   }
 }

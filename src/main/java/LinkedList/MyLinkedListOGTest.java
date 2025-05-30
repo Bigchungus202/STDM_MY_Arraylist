@@ -229,7 +229,7 @@ public class MyLinkedListOGTest {
         assertEquals(2, mal.size());
     }
 
-   @Ignore
+   //@Ignore
 	@Test
     public void testContains() {
         MyLinkedListOG mal = new MyLinkedListOG();
@@ -318,7 +318,7 @@ public class MyLinkedListOGTest {
         assertEquals(-1, mal.lastIndexOf("vier"));
     }
 
-    @Ignore
+    //@Ignore
 	@Test
     public void testManyOperations() {
         MyLinkedListOG mal = new MyLinkedListOG();
